@@ -13,10 +13,10 @@ package org.eclipse.equinox.weaving.springweaver;
 
 import java.lang.instrument.ClassFileTransformer;
 
+import org.eclipse.gemini.blueprint.context.BundleContextAware;
 import org.osgi.framework.BundleContext;
 import org.springframework.instrument.classloading.LoadTimeWeaver;
 import org.springframework.instrument.classloading.SimpleThrowawayClassLoader;
-import org.springframework.osgi.context.BundleContextAware;
 import org.springframework.util.ClassUtils;
 
 public class EquinoxAspectsLoadTimeWeaver implements LoadTimeWeaver, BundleContextAware {

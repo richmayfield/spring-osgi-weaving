@@ -1,0 +1,7 @@
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Name: Springweaver
+Bundle-SymbolicName: org.eclipse.equinox.weaving.springweaver
+Bundle-Vendor: Martin Lippert
+Bundle-Activator: 
+ org.eclipse.equinox.weaving.springweaver.Activator
+

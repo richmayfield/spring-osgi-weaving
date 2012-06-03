@@ -6,16 +6,18 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *   Martin Lippert                   initial implementation      
+ *   Martin Lippert                   initial implementation 
+ *   Rich Mayfield                    OSGi Weaving Service implementation     
  *******************************************************************************/
 
 package org.eclipse.equinox.weaving.springweaver;
 
-import java.util.Properties;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
-import org.eclipse.equinox.service.weaving.IWeavingServiceFactory;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.hooks.weaving.WeavingHook;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -44,10 +46,10 @@ public class Activator implements BundleActivator {
         
         this.registry = new ClassFileTransformerRegistry();
         
-        final String serviceName = IWeavingServiceFactory.class.getName();
-        final IWeavingServiceFactory weavingServiceFactory = new WeavingServiceFactory(registry);
-        final Properties props = new Properties();
-        context.registerService(serviceName, weavingServiceFactory, props);
+        final String serviceName = WeavingHook.class.getName();
+        final WeavingHook weavingHook = new WeavingHookImpl(registry);
+        final Dictionary<String, ?> props = new Hashtable<String, String>();
+        context.registerService(serviceName, weavingHook, props);
 	}
 
 	public void stop(BundleContext context) throws Exception {
